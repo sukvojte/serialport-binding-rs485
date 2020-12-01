@@ -1,0 +1,49 @@
+{
+  "name": "@sukvojte/serialport-binding-rs485",
+  "version": "9.0.2",
+  "main": "lib",
+  "keywords": [
+    "serialport-binding-rs485"
+  ],
+  "dependencies": {
+    "@serialport/binding-abstract": "^9.0.2",
+    "@serialport/parser-readline": "^9.0.1",
+    "bindings": "^1.5.0",
+    "debug": "^4.1.1",
+    "nan": "^2.14.1",
+    "prebuild-install": "^5.3.5"
+  },
+  "devDependencies": {
+    "@serialport/binding-mock": "^9.0.2",
+    "node-abi": "^2.18.0"
+  },
+  "engines": {
+    "node": ">=8.6.0"
+  },
+  "scripts": {
+    "install": "prebuild-install --tag-prefix @serialport/bindings@ || node-gyp rebuild",
+    "lint": "cc --verbose",
+    "prebuild": "prebuild --all --force --strip --verbose --tag-prefix @serialport/bindings@",
+    "rebuild": "node-gyp rebuild"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:sukvojte/serialport-binding-rs485.git"
+  },
+  "gypfile": true,
+  "cc": {
+    "filter": [
+      "legal/copyright",
+      "build/include"
+    ],
+    "files": [
+      "src/*.cpp",
+      "src/*.h"
+    ],
+    "linelength": "120"
+  }
+}
