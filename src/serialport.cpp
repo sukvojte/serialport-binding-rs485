@@ -70,7 +70,6 @@ NAN_METHOD(Open) {
   #ifndef WIN32
     baton->vmin = getIntFromObject(options, "vmin");
     baton->vtime = getIntFromObject(options, "vtime");
-  #else
     baton->rs485_rts_on_send = getBoolFromObject(options, "rs485RtsOnSend");
     baton->rs485_rts_after_send = getBoolFromObject(options, "rs485RtsAfterSend");
     baton->rs485_delay_before_send = getBoolFromObject(options, "rs485DelayBeforeSend");

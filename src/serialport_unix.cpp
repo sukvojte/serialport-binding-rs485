@@ -288,13 +288,13 @@ int setup(int fd, OpenBaton *data) {
   #if defined(__linux__)
 
     Rs485Config conf = {
-      .rs485_rts_on_send = data.rs485_rts_on_send,
-      .rs485_rts_after_send = data.rs485_rts_after_send,
-      .rs485_delay_before_send = data.rs485_delay_before_send,
-      .rs485_delay_after_send = data.rs485_delay_after_send,
-      .rs485_rx_during_send = data.rs485_rx_during_send,
-      .rs485_enabled = data.rs485_enabled,
-    }
+      .rs485_rts_on_send = data->rs485_rts_on_send,
+      .rs485_rts_after_send = data->rs485_rts_after_send,
+      .rs485_delay_before_send = data->rs485_delay_before_send,
+      .rs485_delay_after_send = data->rs485_delay_after_send,
+      .rs485_rx_during_send = data->rs485_rx_during_send,
+      .rs485_enabled = data->rs485_enabled,
+    };
 
     linuxSetRs485(fd, &conf);
   #endif

@@ -77,15 +77,14 @@ struct OpenBaton : public Nan::AsyncResource {
   SerialPortParity parity;
   SerialPortStopBits stopBits;
 #ifndef WIN32
-  uint8_t vmin = 0;
-  uint8_t vtime = 0;
-#else
   bool rs485_rts_on_send = false;
   bool rs485_rts_after_send = true;
   uint8_t rs485_delay_before_send = 0;
   uint8_t rs485_delay_after_send = 0;
   bool rs485_rx_during_send = false;
   bool rs485_enabled = false;
+  uint8_t vmin = 0;
+  uint8_t vtime = 0;
 #endif
 };
 

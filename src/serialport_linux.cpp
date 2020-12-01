@@ -4,6 +4,7 @@
 #include <asm/ioctls.h>
 #include <asm/termbits.h>
 #include <linux/serial.h>
+#include "serialport_linux.h"
 
 // Uses the termios2 interface to set nonstandard baud rates
 int linuxSetCustomBaudRate(const int fd, const unsigned int baudrate) {
@@ -37,8 +38,14 @@ int linuxGetSystemBaudRate(const int fd, int* const outbaud) {
   return 0;
 }
 
-int linuxSetRs485(Rs485Config *config) {
+int linuxSetRs485(const int fd, Rs485Config *config) {
   struct serial_rs485 rs485conf;
+  
+  if (ioctl(fd, TIOCGRS485, &rs485conf) < 0)
+	{
+		return -1;
+	} 
+
 
   rs485conf.flags &= ~(SER_RS485_ENABLED | SER_RS485_RTS_ON_SEND | SER_RS485_RTS_AFTER_SEND | SER_RS485_RX_DURING_TX);
 
@@ -62,6 +69,8 @@ int linuxSetRs485(Rs485Config *config) {
 	{
 		return -1;
 	}
+
+  return 0;
 }
 
 #endif
